@@ -1,0 +1,42 @@
+<div class="container">
+    <h2 class="text-success text-decoration-underline"> Total expeances of the day</h2>
+
+    <button type="button" routerLink="/addexpanse" class="btn btn-primary">ADD</button>
+    <div class="container-fluid mt-3">
+        <div class="card">
+            <div class="card-body d-flex justify-content-around align-items-center">
+        
+                
+                <h5 class="card-title">title</h5>
+                <h5 class="card-title">Description</h5>
+                <h5 class="card-title">Price</h5>
+               <div class="d-flex ">
+                <h5 class="card-title me-5">delete</h5>
+                <h5 class="card-title">Update</h5>
+               </div>
+                
+        
+            </div>
+        </div>
+       @for (expanse of expanseList; track $index) {
+        <div class="card">
+            <div class="card-body d-flex justify-content-around align-items-center">
+               
+               
+                    <h5 class="card-title">{{expanse.title}}</h5>
+               
+                <p class="card-text">{{expanse.description}}</p>
+                <h3 class="text-primary">$ {{expanse.price}}</h3>
+                <div class="">
+                    <button class="btn btn-danger" (click)="delete(expanse.id)">delete</button>
+                    <a class=" ms-3 btn  btn-success" [routerLink]="['/update',expanse.id]">Update</a>
+                </div>
+                
+                
+            </div>
+        </div>
+       }
+    </div>
+
+
+</div>

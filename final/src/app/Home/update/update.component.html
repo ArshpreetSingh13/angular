@@ -1,0 +1,29 @@
+<div class="container">
+    <h2 class="text-center mb-4 m-4 text-primary">Update daily expance</h2>
+    <div class="d-flex justify-content-center align-items-center">
+        <form [formGroup]="ExpanceForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3 ">
+                <label class="form-label">Expance title</label>
+                <input type="text" class="form-control" formControlName="title">
+                @if (ExpanceForm.get('title')?.hasError('required') && ExpanceForm.get('title')?.touched) {<div
+                    class="form-text text-danger">Enter the Title of your Expamce</div>}
+
+            </div>
+            <div class="mb-3 ">
+                <label class="form-label">RS</label>
+                <input type="number" min="0" class="form-control" formControlName="price">
+                @if (ExpanceForm.get('price')?.hasError('required') && ExpanceForm.get('price')?.touched) {<div
+                    class="form-text text-danger">Enter the price of your Expance</div>}
+
+            </div>
+            <div class="mb-3 ">
+                <label class="form-label">Description</label>
+                <textarea class="form-control" formControlName="description"></textarea>
+                @if (ExpanceForm.get('description')?.hasError('required') && ExpanceForm.get('description')?.touched) {
+                <div class="form-text text-danger">Enter the description of your Expamce</div>}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
