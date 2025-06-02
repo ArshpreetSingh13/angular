@@ -1,0 +1,55 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-pulse" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-2">
+            <a routerLink="/addmeal" class="btn btn-info">ADD</a>
+
+            <div class="container mt-5">
+                @for (meal of mealList; track $index) {
+                <div class="card p-3" >
+                    <h3>{{week[meal.day]}} </h3>
+                    <button (click)="delete(meal.id)" class="w-25 btn btn-danger">Delete</button>
+                    <div class="card-body ">
+                        <div class="d-flex justify-content-between align-items-center light p-3">
+                             <div >
+                                <span class="fw-bolder">Break Fast : </span>
+                                <span>{{meal.breakfast}}</span>
+                             </div>
+                             <div>
+                                <a [routerLink]="['/grocery',meal.breakfast]" class="btn btn-danger">Grocery List</a>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="card-body ">
+                        <div class="d-flex justify-content-between align-items-center light p-3">
+                             <div >
+                                <span class="fw-bolder">Lunch : </span>
+                                <span>{{meal.lunch}}</span>
+                             </div>
+                             <div>
+                                <button class="btn btn-danger"  [routerLink]="['/grocery',meal.lunch]">Grocery List</button>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="card-body ">
+                        <div class="d-flex justify-content-between align-items-center light p-3">
+                             <div >
+                                <span class="fw-bolder">Dinner : </span>
+                                <span>{{meal.dinner}}</span>
+                             </div>
+                             <div>
+                                <button class="btn btn-danger" [routerLink]="['/grocery',meal.dinner]">Grocery List</button>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+
+
+        </div>
+    </div>
+</div>

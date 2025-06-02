@@ -30,11 +30,12 @@ export class ExpanseComponent {
    
     title: new FormControl('', Validators.required),
     price: new FormControl('', Validators.required),
-    description: new FormControl('', Validators.required)
+    description: new FormControl('', Validators.required),
+    image:new FormControl('')
   });
 
   uploade(event:any){
-    this.selectedfile=event.target.file[0]
+    this.selectedfile=event.target.files[0]
   }
 
   onSubmit() {
@@ -45,11 +46,12 @@ export class ExpanseComponent {
 
       if (this.selectedfile){
         this.Cloudinary.uploadImage(this.selectedfile).subscribe((uploadeRes:any)=>{
-          this.ExpanceForm.image=uploadeRes.secure_url
+          this.ExpanceForm.patchValue({ image: uploadeRes.secure_url });
+
 
           console.log(this.ExpanceForm.value);
           
-          // this.store.addItem(this.ExpanceForm.value).then(() => console.log(this.ExpanceForm.value)).catch(() => console.log("this.ExpanceForm.value"))
+          this.store.addItem(this.ExpanceForm.value).then(() => console.log(this.ExpanceForm.value)).catch(() => console.log("this.ExpanceForm.value"))
         })
         
       

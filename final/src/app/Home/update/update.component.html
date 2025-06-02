@@ -17,6 +17,14 @@
 
             </div>
             <div class="mb-3 ">
+                <label class="form-label">Image</label>
+                <input type="file" min="0" class="form-control" (change)="Onchange($event)">
+            
+            
+            </div>
+            
+            
+            <div class="mb-3 ">
                 <label class="form-label">Description</label>
                 <textarea class="form-control" formControlName="description"></textarea>
                 @if (ExpanceForm.get('description')?.hasError('required') && ExpanceForm.get('description')?.touched) {

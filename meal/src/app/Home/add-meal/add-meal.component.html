@@ -1,0 +1,53 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-pulse" [fullScreen]="true">
+    <p style="color: white"> Submitting... </p>
+</ngx-spinner>
+
+<div class="container">
+    <div class="row">
+        <form [formGroup]="MealForm" (submit)="Onsubmit()">
+            <div class="col-8 offset-2 bg-light rounded-3">
+
+                <h2 class="text-center bg-light p-5">Weelkly meal</h2>
+                <div class="form-floating mb-3">
+                    <select name="" id="" class="form-control" formControlName="day">
+                        <option value="" selected disabled>Select Your Day</option>
+                        <option value="1" >Sunday</option>
+                        
+                        <option value="2">Monday</option>
+                        <option value="3">Tuesday</option>
+                        <option value="4">Wednesday</option>
+                        <option value="5">Thursday</option>
+                        <option value="6">Friday</option>
+                        <option value="7">Saturday</option>
+                    </select>
+
+                    <label for="floatingInput">Enter Your Day</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" placeholder="Foor" formControlName="breakfast">
+
+                    <label for="floatingInput">Break Fast</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" placeholder="Foor" formControlName="lunch">
+
+                    <label for="floatingInput">Lunch</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" placeholder="Foor" formControlName="dinner">
+
+                    <label for="floatingInput">Dinner</label>
+                </div>
+                <!-- <div class="form-floating">
+                                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                                <label for="floatingPassword">Password</label>
+                            </div> -->
+                <div class="form-floating text-center">
+
+                    <button class="btnbg btn">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
