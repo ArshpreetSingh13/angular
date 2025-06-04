@@ -1,5 +1,5 @@
 <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-pulse" [fullScreen]="true">
-    <p style="color: white"> Submitting... </p>
+    <p style="color: white"> Loading... </p>
 </ngx-spinner>
 
 <div class="container">
@@ -8,7 +8,7 @@
             <div class="col-8 offset-2 bg-light rounded-3">
 
                 <h2 class="text-center bg-light p-5">Weelkly meal</h2>
-                <div class="form-floating mb-3">
+                <!-- <div class="form-floating mb-3">
                     <select name="" id="" class="form-control" formControlName="day">
                         <option value="" selected disabled>Select Your Day</option>
                         <option value="1" >Sunday</option>
@@ -22,13 +22,19 @@
                     </select>
 
                     <label for="floatingInput">Enter Your Day</label>
+                </div> -->
+                <div class="form-floating mb-3">
+                    <input type="date" class="form-control" placeholder="Foor" formControlName="date">
+                
+                    <label for="floatingInput">Date</label>
                 </div>
-
+                
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" placeholder="Foor" formControlName="breakfast">
 
                     <label for="floatingInput">Break Fast</label>
                 </div>
+                
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" placeholder="Foor" formControlName="lunch">
 

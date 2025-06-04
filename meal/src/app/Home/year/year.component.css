@@ -1,0 +1,15 @@
+.month-card {
+    background-color: #841ebe;
+    color: white;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.25rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+}
+
+.month-card:hover {
+    transform: scale(1.05);
+}

@@ -3,53 +3,146 @@
 </ngx-spinner>
 
 <div class="container">
+
     <div class="row">
-        <div class="col-md-8 offset-2">
+        <!-- <div class="col-md-12 ">
             <a routerLink="/addmeal" class="btn btn-info">ADD</a>
 
-            <div class="container mt-5">
+            <div class="row">
+                sunday
+
+
                 @for (meal of mealList; track $index) {
-                <div class="card p-3" >
-                    <h3>{{week[meal.day]}} </h3>
-                    <button (click)="delete(meal.id)" class="w-25 btn btn-danger">Delete</button>
-                    <div class="card-body ">
-                        <div class="d-flex justify-content-between align-items-center light p-3">
-                             <div >
-                                <span class="fw-bolder">Break Fast : </span>
-                                <span>{{meal.breakfast}}</span>
-                             </div>
-                             <div>
-                                <a [routerLink]="['/grocery',meal.breakfast]" class="btn btn-danger">Grocery List</a>
-                             </div>
-                        </div>
-                    </div>
-                    <div class="card-body ">
-                        <div class="d-flex justify-content-between align-items-center light p-3">
-                             <div >
-                                <span class="fw-bolder">Lunch : </span>
-                                <span>{{meal.lunch}}</span>
-                             </div>
-                             <div>
-                                <button class="btn btn-danger"  [routerLink]="['/grocery',meal.lunch]">Grocery List</button>
-                             </div>
-                        </div>
-                    </div>
-                    <div class="card-body ">
-                        <div class="d-flex justify-content-between align-items-center light p-3">
-                             <div >
-                                <span class="fw-bolder">Dinner : </span>
-                                <span>{{meal.dinner}}</span>
-                             </div>
-                             <div>
-                                <button class="btn btn-danger" [routerLink]="['/grocery',meal.dinner]">Grocery List</button>
-                             </div>
-                        </div>
+                <div class="col-md-2 ">
+                    <div class="card p-2">
+
+                        <h5>{{data(meal.date)}}</h5>
+                        <p>{{meal.date}}</p>
+                        <button (click)="delete(meal.id)" class=" btn btn-danger">Delete</button>
+                        
+                            <div class="d-flex flex-column align-items-center light m-1 py-2">
+
+                                <span class="fw-bolder">Break Fast </span>
+                                <div>
+                                    <a [routerLink]="['/grocery',meal.breakfast]"
+                                        class="btn btn-danger">{{meal.breakfast}}</a>
+                                </div>
+
+
+                            </div>
+                            <div class="d-flex flex-column align-items-center light m-1 py-2">
+
+                                <span class="fw-bolder">Lunch </span>
+                                <div>
+                                    <a [routerLink]="['/grocery',meal.lunch]"
+                                        class="btn btn-danger">{{meal.lunch}}</a>
+                                </div>
+
+
+                            </div>
+                            <div class="d-flex flex-column align-items-center light m-1 py-2">
+
+                                <span class="fw-bolder">Dinner </span>
+                                <div>
+                                    <a [routerLink]="['/grocery',meal.dinner]"
+                                        class="btn btn-danger">{{meal.dinner}}</a>
+                                </div>
+
+
+                            </div>
+                       
+                       
                     </div>
                 </div>
                 }
+
+
+
+
+
+            </div>
+
+
+        </div> -->
+
+        <div class="col-md-12">
+            <h1>The meal for the month <span class="text-danger">{{currentMonth}}</span></h1>
+            <!-- <div class="row d-flex justify-content-center ">
+                @if(mealList.length==0){
+                    <div>No data</div>
+                }
+                @else {
+                    @for (meal of mealList; track $index) {
+                    <div class="col-md-3 mt-5">
+                        <ul class="list-group ">
+                            <li class="list-group-item d-flex justify-content-between"><span class="fw-semibold">{{data(meal.date)}}</span>
+                                <span class=" bg p-1 rounded-2">{{meal.date}}</span></li>
+                            <li class="list-group-item d-flex justify-content-between">Breakfast <span><a
+                                        [routerLink]="['/grocery',meal.breakfast]"
+                                        class="btn btn-outline-primary">{{meal.breakfast}}</a></span></li>
+                    
+                            <li class="list-group-item d-flex justify-content-between">Lunch
+                                <span><a [routerLink]="['/grocery',meal.lunch]" class="btn btn-outline-primary">{{meal.lunch}}</a></span>
+                    
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">Dinner
+                                <span><a [routerLink]="['/grocery',meal.dinner]" class="btn btn-outline-primary">{{meal.dinner}}</a></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <button (click)="delete(meal.id)" class=" btn btn-danger">Delete</button>
+                                <button [routerLink]="['/update',meal.id]" class=" btn btn-success">Update</button>
+                            </li>
+                        </ul>
+                    </div>       }
+                }
+            </div> -->
+
+            <div class="row d-flex justify-content-center ">
+                <ng-container *ngIf="mealList.length === 0; else showMeals">
+                    <div>No data</div>
+                </ng-container>
+
+                <ng-template #showMeals>
+                    <div *ngFor="let meal of mealList | paginate: { itemsPerPage: itemsPerPage, currentPage: page }; let i = index"
+                        class="col-md-3 mt-5">
+                        <ul class="list-group ">
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span class="fw-semibold">{{data(meal.date)}}</span>
+                                <span class=" bg p-1 rounded-2">{{meal.date}}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">Breakfast
+                                <span><a [routerLink]="['/grocery',meal.breakfast]"
+                                        class="btn btn-outline-primary">{{meal.breakfast}}</a></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">Lunch
+                                <span><a [routerLink]="['/grocery',meal.lunch]"
+                                        class="btn btn-outline-primary">{{meal.lunch}}</a></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">Dinner
+                                <span><a [routerLink]="['/grocery',meal.dinner]"
+                                        class="btn btn-outline-primary">{{meal.dinner}}</a></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <button (click)="delete(meal.id)" class=" btn btn-danger">Delete</button>
+                                <button [routerLink]="['/update',meal.id]" class=" btn btn-success">Update</button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Pagination Controls -->
+                    <div class="mt-4 d-flex justify-content-center">
+                        <pagination-controls (pageChange)="page = $event" 
+                        [autoHide]="true" previousLabel="« Prev"
+                            nextLabel="Next »">
+                        </pagination-controls>
+                    </div>
+                </ng-template>
             </div>
 
 
         </div>
+
+
+
     </div>
 </div>

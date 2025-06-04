@@ -2,3 +2,12 @@
     background-color: #d8d7d779;
     border-radius: 10px;
 }
+
+.bor{
+    border: 2px solid red;
+}
+
+.bg{
+    background-color: #841ebe;
+    color: white;
+}
