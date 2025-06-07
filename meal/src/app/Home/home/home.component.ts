@@ -9,54 +9,60 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-home',
-  standalone:true,
+  standalone: true,
   imports: [RouterLink,
-    NgxSpinnerModule,CommonModule, NgFor, NgxPaginationModule],
+    NgxSpinnerModule, CommonModule, NgFor, NgxPaginationModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
-  constructor(private ai:GenaiService,
-    private meal:MealService,
+  constructor(private ai: GenaiService,
+    private meal: MealService,
     private spinner: NgxSpinnerService,
-    private route:ActivatedRoute,
-    private toastr:ToastrService
-  ){}
+    private route: ActivatedRoute,
+    private toastr: ToastrService,
+    private router:Router
+ 
 
-  res:any
+  ) { }
 
-  mealList:any
+  res: any
+
+  mealList: any
   page = 1;
   itemsPerPage = 7;
-  allmealList:any
+  allmealList: any
 
-  week=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+  week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
   months = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
 
-  currentMonth:any
-  
-   ngOnInit(){
-     this.spinner.show();
-     const id:any=this.route.snapshot.paramMap.get('id')
-      this.currentMonth=this.months[id]
-    this.meal.getAll().subscribe((data)=>{
-       
-      this.allmealList=data
+  currentMonth: any
+  isLogined=false
+
+  ngOnInit() {
+    this.isLogined = sessionStorage.getItem("isLogined")=="true"
+    const Uid:any=sessionStorage.getItem("uid")
+    this.spinner.show();
+    const id: any = this.route.snapshot.paramMap.get('id')
+    this.currentMonth = this.months[id]
+    this.meal.getAll(Uid).subscribe((data) => {
+
+      this.allmealList = data
 
       this.mealList = this.allmealList.filter((meal: any) => {
         const mealDate = new Date(meal.date);
-        return mealDate.getMonth() == id; // June
+        return mealDate.getMonth() == id;
       });
 
-      this.mealList.sort((a:any, b:any) => new Date(a.date).getTime() - new Date(b.date).getTime());     
-      
-      
+      this.mealList.sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+
       console.log(this.mealList);
-      
-      
+
+
       this.spinner.hide();
 
 
@@ -64,26 +70,31 @@ export class HomeComponent implements OnInit {
 
 
 
-    
-    
+
+
   }
 
-  data(day:any){
+  nav(){
+    this.toastr.success("Please Login first")
+    this.router.navigate(["/"])
+  }
+
+  data(day: any) {
     const cDate = new Date(day);
-      return this.week[cDate.getDay()]     
-     
+    return this.week[cDate.getDay()]
+
   }
   // month(monthc:any){
   //   const date = new Date(monthc);
   //   return this.months[date.getMonth()];     
-     
+
   // }
-  
 
 
-  delete(id:any){
-      
-      this.meal.delete(id)
+
+  delete(id: any) {
+
+    this.meal.delete(id)
     this.toastr.success('Meal deleted successfully!', 'Deleted');
   }
   // ngOnInit() {

@@ -1,0 +1,41 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100 bg-light">
+    <div class="card shadow p-4 w-100" style="max-width: 450px;">
+        <h2 class="text-center mb-4" style="color: #841ebe;">Sign In</h2>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+            
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="example@email.com"
+                    formControlName="email">
+            </div>
+            <div class="text-danger mb-2" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
+                <small *ngIf="loginForm.get('email')?.errors?.['required']">Email is required.</small>
+                <small *ngIf="loginForm.get('email')?.errors?.['email']">Enter a valid email.</small>
+            </div>
+
+            <!-- Password Field -->
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="••••••••"
+                    formControlName="password">
+            </div>
+            <div class="text-danger mb-2"
+                *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+                <small *ngIf="loginForm.get('password')?.errors?.['required']">Password is required.</small>
+                <small *ngIf="loginForm.get('password')?.errors?.['minlength']">Minimum 6 characters required.</small>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" [disabled]="loginForm.invalid" class="btn w-100 text-white"
+                style="background-color: #841ebe;">
+                Sign In
+            </button>
+
+            <p class="text-center mt-3">Don't have an account?
+                <a routerLink="/register" style="color: #841ebe;">Sign up</a>
+            </p>
+        </form>
+    </div>
+</div>
+  

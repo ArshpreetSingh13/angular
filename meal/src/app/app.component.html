@@ -1,7 +1,41 @@
-<div class="container mb-2 ">
-    <app-nav></app-nav>
+<!-- Top Navbar -->
+<nav class="navbar navbar-dark bg fixed-top">
+    <div class="container-fluid">
+        <button class="btn btn-outline-light" (click)="toggleSidebar()">☰</button>
+        <span class="navbar-brand  mb-0 h1">My Dashboard</span>
+    </div>
+</nav>
+
+<!-- Sidebar -->
+<div class="sidebar" [class.collapsed]="isCollapsed">
+    <a routerLink="/">Dashboard</a>
+    <a routerLink="/month">Months</a>
+    <a routerLink="/addmeal">Add Meal</a>
+
+@if (isLogined) {
+
+    <a (click)="logout()">Logout</a>
+}
+@else {
+
+    <a routerLink="/register">Register</a>
+    <a routerLink="/login">Sign In</a>
+}
+      
+
+
+
+    
+   
+    
 </div>
 
+<!-- Main Content -->
+<div class="content" [class.full]="isCollapsed">
+  
+    
+    
+    
+    <router-outlet/>
+</div>
 
-
-<router-outlet/>

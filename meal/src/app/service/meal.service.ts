@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { collection, collectionData, docData, Firestore } from '@angular/fire/firestore';
-import { addDoc, deleteDoc, doc, updateDoc } from '@firebase/firestore';
+import { addDoc, deleteDoc, doc, query, updateDoc, where } from '@firebase/firestore';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -16,10 +16,11 @@ export class MealService {
     return addDoc(itemCollection,item)
   }
   
-  getAll(): Observable<any>{
+  getAll(id:any): Observable<any>{
     const itemCollection = collection(this.firestore,"dailymeal")
+    
 
-    return collectionData(itemCollection,{idField:'id'})
+    return collectionData(query(itemCollection, where("userId", "==", id)),{idField:'id'}) as Observable<any>
 
   }
 

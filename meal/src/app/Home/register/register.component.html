@@ -1,0 +1,46 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100 bg-light">
+    <div class="card shadow p-4 w-100" style="max-width: 450px;">
+        <h2 class="text-center mb-4" style="color: #841ebe;">Create Account</h2>
+
+        <form [formGroup]="ResForm" (submit)="onsubmit()">
+            <div class="mb-3">
+                <label for="name" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Name" required formControlName="name" >
+            </div>
+            @if(ResForm.get("name")?.touched && ResForm.get("name")?.invalid ){
+            <div class="mb-3 text-danger ">
+                <p>The Name is required/p>
+            </div>
+            }
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="example@email.com" required formControlName="email">
+            </div>
+            @if(ResForm.get("email")?.touched && ResForm.get("email")?.invalid ){
+            <div class="mb-3 text-danger ">
+                <p>The Email is Required</p>
+            </div>
+            }
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="••••••••" required formControlName="password">
+            </div>
+            @if(ResForm.get("password")?.touched && ResForm.get("password")?.invalid ){
+                <div class="mb-3 text-danger ">
+                    <p>The password is required to be must have 6 letters</p>
+                </div>
+            }
+
+            
+
+            <button type="submit" class="btn w-100 text-white" style="background-color: #841ebe;">Sign Up</button>
+
+            <p class="text-center mt-3">Already have an account?
+                <a routerLink="/login" style="color: #841ebe;">Log in</a>
+            </p>
+        </form>
+    </div>
+</div>
+  

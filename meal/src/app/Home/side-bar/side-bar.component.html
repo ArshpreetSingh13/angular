@@ -1,0 +1,23 @@
+<!-- Top Navbar -->
+<nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+        <button class="btn btn-outline-light" (click)="toggleSidebar()">☰</button>
+        <span class="navbar-brand mb-0 h1">My Dashboard</span>
+    </div>
+</nav>
+
+
+<div class="sidebar" [class.collapsed]="isCollapsed">
+    <a href="#">Dashboard</a>
+    <a href="#">Users</a>
+    <a href="#">Posts</a>
+    <a href="#">Settings</a>
+    <a href="#">Logout</a>
+</div>
+
+
+<div class="content" [class.full]="isCollapsed">
+    <h2>Welcome!</h2>
+    <p>This is a responsive Angular sidebar example.</p>
+</div>
+  

@@ -23,6 +23,7 @@ export class AddMealComponent implements OnInit {
 
   MealForm = new FormGroup({
     // day:new FormControl('',Validators.required),
+    userId: new FormControl('', Validators.required),
     breakfast: new FormControl('', Validators.required),
     lunch: new FormControl('', Validators.required),
     dinner: new FormControl('', Validators.required),
@@ -31,13 +32,18 @@ export class AddMealComponent implements OnInit {
   })
   mealList: any
   existDate: any
-
+  isLogined=false
+  userId: string|null=''
 
   ngOnInit() {
-    this.meal.getAll().subscribe((data) => {
+    const Uid: any = sessionStorage.getItem("uid")
+    this.isLogined = sessionStorage.getItem("isLogined")=="true"
+    this.meal.getAll(Uid).subscribe((data) => {
 
       this.mealList = data
 
+      this.userId=sessionStorage.getItem("uid")
+    
       console.log(this.mealList);
 
 
@@ -48,6 +54,10 @@ export class AddMealComponent implements OnInit {
 
 
   Onsubmit() {
+
+    this.MealForm.patchValue({userId:this.userId})
+    console.log("resu",this.MealForm.value)
+    
 
     if (this.MealForm.valid) {
       const selectedData: any = this.MealForm.value.date
@@ -88,5 +98,10 @@ export class AddMealComponent implements OnInit {
       }
     }
 
+  }
+
+  nav(){
+    this.router.navigate(["/login"])
+    this.toastr.success("Please Login first")
   }
 }

@@ -14,10 +14,16 @@ export class YearComponent {
   constructor(private spinner:NgxSpinnerService
     // private meal:MealService
   ){}
+  
   months = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
+  
+
+
+
+
   // mealList:any
   // ngOnInit() {
   //   this.spinner.show();
