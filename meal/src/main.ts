@@ -11,7 +11,7 @@ bootstrapApplication(AppComponent, {
 
   providers: [
     ...appConfig.providers || [],
-    provideAnimations(), // ✅ Add this line to enable animations
+    provideAnimations(),
 
     provideToastr(),
   ],
