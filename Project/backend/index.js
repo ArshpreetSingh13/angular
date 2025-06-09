@@ -3,12 +3,8 @@ const app=express()
 
 const POST=5000
 
-app.get("/",(req,res)=>{
-    res.send({
-        status:200,
-        Message:"hlo"
-    })
-})
+const db=require("./server/config/db")
+
 
 app.listen(POST,(err)=>{
     if(err){
