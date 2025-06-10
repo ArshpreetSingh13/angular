@@ -8,6 +8,7 @@ const peopleSchema = mongoose.Schema({
     followers: { type: mongoose.Schema.Types.ObjectId, ref: "people" },
     following: { type: mongoose.Schema.Types.ObjectId, ref: "people" },
     avtar: { type: String, default: "" },
+    userType: { type: String, default: "" },   //1 - admin      2-people
     status: { type: Boolean, default: true },
     createdAt: { type: Date, default: Date.now() }
 
