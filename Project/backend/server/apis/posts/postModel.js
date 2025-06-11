@@ -5,9 +5,9 @@ const postSchema=mongoose.Schema({
     description:{type:String,default:""},
     codeSnippet:{type:String,default:""},
     // createdBy:{type:String,defaul:""},
-    createdBy:{type:mongoose.Schema.Types.ObjectId ,ref:"people"},
-    likedBy:{type:mongoose.Schema.Types.ObjectId ,ref:"people"},
-    comments:{type:mongoose.Schema.Types.ObjectId ,ref:"people"},
+    createdBy: { type: mongoose.Schema.Types.ObjectId, ref:"User"},
+    likedBy:{type:mongoose.Schema.Types.ObjectId ,ref:"User"},
+    comments:{type:mongoose.Schema.Types.ObjectId ,ref:"User"},
     answers:{type:mongoose.Schema.Types.ObjectId ,ref:"answers"},
     status:{type:Boolean,default:true},
     createdAt:{type:Date,default: Date.now()}

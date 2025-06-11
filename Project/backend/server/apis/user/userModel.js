@@ -5,8 +5,8 @@ const userSchema = mongoose.Schema({
         email: { type: String, default: "" },
         password: { type: String, default: "" },
         bio: { type: String, default: "" },
-        followers: { type: mongoose.Schema.Types.ObjectId, ref: "people" },
-        following: { type: mongoose.Schema.Types.ObjectId, ref: "people" },
+        followers: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+        following: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
         avtar: { type: String, default: "" },
         userType: { type: String, default: "" },   //1 - admin      2-people
         status: { type: Boolean, default: true },

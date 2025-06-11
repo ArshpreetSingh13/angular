@@ -7,6 +7,9 @@ const postController=require("../apis/posts/postController")
 const userController=require("../apis/user/userController")
 const techController=require("../apis/technology/techController")
 const commentController=require("../apis/comments/commentController")
+const chatController=require("../apis/chats/chatController")
+const answerConroller=require("../apis/answers/answerController")
+const competitionController=require("../apis/compitions/compitionController")
 
 
 router.post("/user/add",upload.single("avtar"),userController.add)
@@ -29,5 +32,25 @@ router.post("/post/update", postController.updateOne)
 
 router.post("/comment/add",commentController.add)
 router.post("/comment/all",commentController.all)
+router.post("/comment/getOne",commentController.getOne)
+router.post("/comment/delete", commentController.deleteOne)
+router.post("/comment/update", commentController.UpdateOne)
+
+router.post("/chat/add",chatController.add)
+router.post("/chat/all",chatController.getAll)
+router.post("/chat/getOne",chatController.getOne)
+router.post("/chat/delete",chatController.deleteOne)
+
+router.post("/answer/add",answerConroller.add)
+router.post("/answer/all",answerConroller.all)
+router.post("/answer/getOne",answerConroller.getOne)
+router.post("/answer/deleteOne",answerConroller.deleteOne)
+router.post("/answer/UpdateOne",answerConroller.UpdateOne)
+
+router.post("/compition/add",competitionController.add)
+router.post("/compition/all",competitionController.all)
+router.post("/compition/getOne",competitionController.getOne)
+router.post("/compition/delete",competitionController.deleteOne)
+
 
 module.exports=router

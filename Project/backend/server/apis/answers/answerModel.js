@@ -1,8 +1,9 @@
 const mongoose = require("mongoose")
 
 const answerSchema = mongoose.Schema({
-    postID: { type: mongoose.Schema.Types.ObjectId, ref: "" },
+    PostID: { type: mongoose.Schema.Types.ObjectId, ref: "Post" },
     code: { type: String, default: "" },
+    output: { type: String, default: "" },
     status: { type: Boolean, default: true },
     createdAt: { type: Date, default: Date.now() }
 
