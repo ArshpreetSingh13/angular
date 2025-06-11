@@ -5,6 +5,8 @@ const POST=5001
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const db=require("./server/config/db")
+const seeders= require("./server/config/seeder")
+seeders.adminreg()
 
 
 

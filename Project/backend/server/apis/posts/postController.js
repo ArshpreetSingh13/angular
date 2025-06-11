@@ -29,7 +29,7 @@ let add = (req, res) => {
             .then((Exist) => {
                 if (!Exist) {
 
-                    let NewPostObj = new postModel
+                    let NewPostObj = new postModel()  
                     NewPostObj.title = req.body.title
                     NewPostObj.description = req.body.description
                     NewPostObj.codeSnippet = req.body.codeSnippet
