@@ -1,8 +1,9 @@
 const userModel = require("./userModel")
 
 const bcrypt = require("bcrypt")
+const jwt=require("jsonwebtoken")
 const { uploadImg } = require("../../utility/helper")
-const { urlencoded } = require("express")
+
 
 
 let add = (req, res) => {
@@ -340,7 +341,65 @@ let UpdateOne = (req, res) => {
 }
 
 
+let login=(req,res)=>{
+    let errMsg = []
+    if (!req.body.email) {
+        errMsg.push("email is required")
+    }
+    if (!req.body.password) {
+        errMsg.push("password is required")
+    }
+
+    if(errMsg.length>0){
+        res.send({
+            success:false,
+            status:202,   
+            message:errMsg
+        })
+    }
+    else{
+        userModel.findOne({email:req.body.email})
+        .then((LogUser)=>{
+            if (LogUser==null){
+                res.send({
+                    success: false,
+                    status: 202,
+                    message:"User Not exist"
+                })
+            }
+            else{
+                bcrypt.compare(req.body.password,LogUser.password,function(err,ismatch){
+                    if(!ismatch){
+                        res.send({
+                            success:false,
+                            status:209,
+                            message:"Paswword not Matched"
+                        })
+                    }
+                    else{
+                        const payload={
+                            id:LogUser._id,
+                            email:LogUser.email,
+                            password:LogUser.password,
+                            userType:LogUser.userType
+                        }
+                        let token=jwt.sign(payload,"123@123")
+                        res.send({
+                            success: true,
+                            status: 209,
+                            message: "Login successfull",
+                            data:LogUser,
+                            token: token
+                        })
+                    }
+                })
+            }
+        })
+        .catch()
+    }
+}
+
 
 module.exports = {
-    add, getAll, getOne, deleteOne, UpdateOne
+    add, getAll, getOne, deleteOne, UpdateOne,login
 }
