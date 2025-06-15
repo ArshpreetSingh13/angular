@@ -1,0 +1,27 @@
+
+
+
+    <div class="form-container shadow-sm">
+        <h2 class="text-black">Instagram</h2>
+        <form [formGroup]="RegForm" (submit)="OnSubmit()">
+            <div class="mb-3">
+                <input type="text" class="form-control" placeholder="Full Name" required formControlName="name">
+            </div>
+            <div class="mb-3">
+                <input type="text" class="form-control" placeholder="Username" required  formControlName="UserName">
+            </div>
+            <div class="mb-3">
+                <input type="email" class="form-control" placeholder="Email" required formControlName="email">
+            </div>
+            <div class="mb-3">
+                <input type="password" class="form-control" placeholder="Password" required formControlName="password">
+            </div>
+            <button type="submit" class="btn btn-primary w-100 btn-signup">Sign Up</button>
+        </form>
+
+        <p class="form-text">By signing up, you agree to our Terms, Data Policy and Cookies Policy.</p>
+        <hr>
+        <p class="form-text">Have an account? <a routerLink="/login">Log in</a></p>
+    </div>
+
+   

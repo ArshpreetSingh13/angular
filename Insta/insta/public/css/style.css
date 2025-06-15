@@ -1,0 +1,85 @@
+body {
+    background-color: #000;
+    color: #fff;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 240px;
+    background-color: #000;
+    padding: 1rem;
+    border-right: 1px solid #222;
+}
+
+.sidebar .nav-link {
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.sidebar .nav-link:hover {
+    color: #ccc;
+}
+
+.stories {
+    display: flex;
+    overflow-x: auto;
+    padding: 1rem 0;
+}
+
+.story {
+    width: 60px;
+    height: 60px;
+    border: 2px solid magenta;
+    border-radius: 50%;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.post {
+    background-color: #111;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    width: 75%;
+}
+
+.post img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.suggestions {
+    color: #ccc;
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.suggestion-row:hover {
+    background-color: #1a1a1a;
+    cursor: pointer;
+}
+
+.footer-links a {
+    color: #888;
+    font-size: 12px;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.footer-links {
+    margin-top: 40px;
+    font-size: 12px;
+}
+
+.footer-links span {
+    color: #888;
+}

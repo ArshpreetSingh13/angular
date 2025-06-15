@@ -1,0 +1,59 @@
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-loader" [fullScreen]="true">
+    <p style="color: white"> Uploading Your Post </p>
+</ngx-spinner>
+
+
+<div class="sidebar d-flex flex-column">
+    <h4>Instagram</h4>
+    <a href="#" class="nav-link">Home</a>
+    <a routerLink="/signup" class="nav-link">reg</a>
+    <a routerLink="/login" class="nav-link">login</a>
+    <a (click)="LogOut()" class="nav-link">logout</a>
+
+    <!-- <a href="/signup" class="nav-link">Explore</a> -->
+    <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal">Reels</a>
+    <a href="#" class="nav-link position-relative">Messages <span
+            class="badge bg-danger position-absolute top-0 start-100 translate-middle">9+</span></a>
+    <a href="#" class="nav-link">Notifications</a>
+    <a href="#" class="nav-link">Create</a>
+    <a (click)="mix()" class="nav-link">Profile</a>
+</div>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade mt-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content " style="background-color: rgb(39, 39, 39);">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Upload Your Post</h1>
+                <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form [formGroup]="PostForm" (submit)="OnSubmit()">
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control text-white" id="inputGroupFile02"
+                            style="background-color: rgb(39, 39, 39);"  (change)="Upload($event)">
+                        <label style="background-color: rgb(39, 39, 39);" class="input-group-text text-white"
+                            for="inputGroupFile02">Upload</label>
+                    </div>
+
+                    <div class="input-group mb-3">
+
+                        <textarea name="" rows="7" class="form-control text-white" style="background-color: rgb(39, 39, 39)
+                        " placeholder="Enter Your Caption" formControlName="caption"></textarea>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
+                    <button type="submit" data-bs-dismiss="modal" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

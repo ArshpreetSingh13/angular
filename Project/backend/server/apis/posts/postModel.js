@@ -4,11 +4,12 @@ const postSchema=mongoose.Schema({
     title:{type:String,default:""},
     description:{type:String,default:""},
     codeSnippet:{type:String,default:""},
+    codeImage:{type:String,default:""},
     // createdBy:{type:String,defaul:""},
-    createdBy: { type: mongoose.Schema.Types.ObjectId, ref:"User"},
-    likedBy:{type:mongoose.Schema.Types.ObjectId ,ref:"User"},
-    comments:{type:mongoose.Schema.Types.ObjectId ,ref:"User"},
-    answers:{type:mongoose.Schema.Types.ObjectId ,ref:"answers"},
+    addedBy: { type: mongoose.Schema.Types.ObjectId, ref:"User"},  //decode id
+    likedBy:{type:mongoose.Schema.Types.ObjectId ,ref:"User"},  //array
+    // comments:{type:mongoose.Schema.Types.ObjectId ,ref:"User"},  //ref
+    // answers:{type:mongoose.Schema.Types.ObjectId ,ref:"answers"},
     status:{type:Boolean,default:true},
     createdAt:{type:Date,default: Date.now()}
     

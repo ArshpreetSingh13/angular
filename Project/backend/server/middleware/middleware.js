@@ -8,7 +8,7 @@ module.exports=(req,res,next)=>{
     let token = req.headers["auth"];
     jwt.verify(token, key, function(err, decoded) {
         
-        if(err==null){
+        if(err){
             res.send({
                 success:false,
                 status:409,
@@ -16,11 +16,9 @@ module.exports=(req,res,next)=>{
             })
         }
         else{
-            res.send({
-                success: true,
-                status: 201,
-                message: "Login successFully"
-            })
+            req.decoded=decoded
+            next()
+            
         }
       });
-}
+} 

@@ -1,0 +1,25 @@
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-loader" [fullScreen]="true">
+    <p style="color: white"> Uploading Your Post </p>
+</ngx-spinner>
+
+
+<div class="login-container ">
+    <div class="logo">Instagram</div>
+
+    <form [formGroup]="LogForm" (submit)="OnSubmmit()">
+        <input type="email" class="form-control mb-2" placeholder="Email address" required formControlName="email">
+        <input type="password" class="form-control mb-3" placeholder="Password" required formControlName="password">
+        <button type="submit" class="btn btn-primary w-100">Log In</button>
+    </form>
+
+    <div class="text-center my-3">
+        <!-- <a href="#" class="text-decoration-none">Forgot password?</a> -->
+      <p class="text-black">Don't have an account? <a routerLink="/signup">Sign up</a></p>
+    </div>
+</div>
+
+
+<div class="footer mt-4">
+    © 2025 Instagram from Meta
+    </div>

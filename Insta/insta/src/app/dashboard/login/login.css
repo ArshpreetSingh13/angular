@@ -1,0 +1,26 @@
+.login-container {
+    max-width: 350px;
+    margin: 100px auto;
+    padding: 40px 30px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.logo {
+
+    font-size: 40px;
+    color: #262626;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.footer {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+a {
+    text-decoration: none;
+}

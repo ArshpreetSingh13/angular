@@ -11,15 +11,16 @@ const chatController=require("../apis/chats/chatController")
 const answerConroller=require("../apis/answers/answerController")
 const competitionController=require("../apis/compitions/compitionController")
 
+router.post("/user/login",userController.login)
 
+router.post("/user/add",upload.single("avtar"),userController.add) 
 
-router.post("/user/add",upload.single("avtar"),userController.add)
+router.use(require("../middleware/middleware"))
+
 router.post("/user/getall",userController.getAll)
 router.post("/user/getOne",userController.getOne)
 router.post("/user/delete",userController.deleteOne)
 router.post("/user/update",upload.single("avtar"), userController.UpdateOne)
-router.post("/user/login",userController.login)
-router.use(require("../middleware/middleware"))
 
 router.post("/tech/add",upload.single("image"), techController.add)
 router.post("/tech/getall", techController.getAll)
