@@ -18,36 +18,35 @@ export class Sidebar {
 
   constructor(
     private db: Posts,
-    private cloudinary:Cloudinary,
-    private spinner:NgxSpinnerService,
-    private router:Router,
-    private authen:Authen
-  
-  ) { }
-  selectedFile: File| null=null
-
-  UserData:any
-  mix(){ 
-    this.authen.getData().subscribe((user)=>{
-      this.UserData=user
-    })
-
-    console.log(this.UserData);
+    private cloudinary: Cloudinary,
+    private spinner: NgxSpinnerService,
+    private router: Router,
     
-}
+    // private authen:Authen
+
+  ) { }
+  selectedFile: File | null = null
+
+ 
 
   PostForm = new FormGroup({
     caption: new FormControl('', Validators.required),
     post: new FormControl(''),
+    UserName:new FormControl(''),
+    name:new FormControl(''),
+    likes:new FormControl(''),
+   comments:new FormControl('')
+    // share:new FormControl(''),
+    
 
   })
 
-  Upload(event:any){
+  Upload(event: any) {
     this.selectedFile = event.target.files[0]
-  
+
   }
 
-  LogOut(){
+  LogOut() {
     sessionStorage.clear()
     this.router.navigate(["/login"])
   }
@@ -55,25 +54,34 @@ export class Sidebar {
   OnSubmit() {
     console.log(this.PostForm.value.post);
 
-    if(this.selectedFile){
+    
+
+    if (this.selectedFile) {
       this.spinner.show()
+
       
-      this.cloudinary.uploadImage(this.selectedFile).subscribe((UrlRecived:any)=>{
+
+      this.cloudinary.uploadImage(this.selectedFile).subscribe((UrlRecived: any) => {
         this.PostForm.patchValue({ post: UrlRecived.secure_url })
-        // console.log(UrlRecived.url);
-        // console.log("after Upload",this.PostForm.value);     
+        this.PostForm.patchValue({ likes: '0' })
+        this.PostForm.patchValue({ comments: '' })
         
+        this.PostForm.patchValue({ UserName: sessionStorage.getItem("UserName") })
+        this.PostForm.patchValue({ name: sessionStorage.getItem("name") })
+      
+        
+
         this.db.addPost(this.PostForm.value)
         this.PostForm.reset()
         this.spinner.hide()
-        
+
       })
 
-      
+
 
     }
   }
 
 
-  
+
 }

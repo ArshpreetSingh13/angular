@@ -1,5 +1,79 @@
 <app-stories></app-stories>
-<div class="post">
-    <p><strong>singh_veer67619</strong> &bull; 37m</p>
-    <img src="https://images.pexels.com/photos/14653174/pexels-photo-14653174.jpeg" alt="Post Image">
+
+
+@for (Post of AllPosts; track $index) {
+<div class="post border rounded p-2 mb-4" style="max-width: 500px;">
+    <!-- Post Header -->
+    <p><strong>{{Post.UserName}}</strong> • 37m</p>
+
+    <!-- Post Image -->
+    <div class="position-relative">
+        <img src="{{Post.post}}" alt="Post Image" class="w-100 rounded" (dblclick)="likePost(Post.id)" />
+
+        <!-- Animated Heart -->
+        <i class="bi bi-heart-fill text-danger animated-heart" *ngIf="isAnimating"></i>
+    </div>
+
+    <!-- Action Bar -->
+    <div class="mt-2 d-flex align-items-center gap-3">
+        <i class="bi" [ngClass]="liked ? 'bi-heart-fill text-danger' : 'bi-heart'" (click)="toggleLike(Post.id)"
+            style="font-size: 1.8rem; cursor: pointer;"></i>
+
+
+
+    <!-- Button trigger modal -->
+    <button type="button" class="bg-transparent text-light" [attr.data-bs-target]="'#Comments' + $index"
+        data-bs-toggle="modal">
+        <i class="bi bi-chat" style="font-size: 1.8rem; cursor: pointer;"></i>
+    </button>
+    
+    <!-- Modal -->
+    <div class="modal fade Flo" [attr.id]="'Comments' + $index" tabindex="-1" [attr.aria-labelledby]="'CommentLabel' + $index"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content text-light" style="max-height: 500px; background-color: rgb(39, 39, 39);">
+                <div class="modal-header">
+                    <h5 class="modal-title" [attr.id]="'CommentLabel' + $index">Comments</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+    
+                    @for (comment of Post.comments; track $index) {
+                    <div class="card text-white bg-dark mb-3" style="max-width: 90%;" *ngIf="comment.postId === Post.id">
+                        <div class="card-header">{{comment.CommentBy}}</div>
+                        <div class="card-body">
+                            <p class="card-text">{{comment.comment}}</p>
+                        </div>
+                    </div>
+                    }
+    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+        <i class="bi bi-send ms-auto" style="font-size: 1.8rem; cursor: pointer;"></i>
+    </div>
+
+    <!-- Like Count -->
+    <p><strong>{{Post.likes}} likes</strong></p>
+
+    <!-- Caption -->
+    <p><strong>{{Post.UserName}}</strong> This is the post caption...</p>
+
+    <!-- Comment Box -->
+
+
+    <div>
+        <form action="" class="input-group mb-3" [formGroup]="CommentsForm" (submit)="OnComment(Post.id)">
+            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
+                aria-describedby="button-addon2" id="Comment" formControlName="comment">
+            <button class="btn btn-outline-secondary text-white" type="submit" id="button-addon2">Comment</button>
+        </form>
+    </div>
 </div>
+
+
+}

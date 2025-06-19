@@ -1,4 +1,7 @@
 
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-loader" [fullScreen]="true">
+    <p style="color: white"> Uploading Your Post </p>
+</ngx-spinner>
 
 
     <div class="form-container shadow-sm">
@@ -15,6 +18,9 @@
             </div>
             <div class="mb-3">
                 <input type="password" class="form-control" placeholder="Password" required formControlName="password">
+            </div>
+            <div class="mb-3">
+                <input type="file" class="form-control" placeholder="Password" required (change)="Upload($event)">
             </div>
             <button type="submit" class="btn btn-primary w-100 btn-signup">Sign Up</button>
         </form>

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
-import { addDoc, collection, doc, docData, Firestore, setDoc } from '@angular/fire/firestore';
+import { addDoc, collection, collectionData, doc, docData, Firestore, setDoc } from '@angular/fire/firestore';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,7 @@ export class Authen {
           name: data.name,
           UserName: data.UserName,
           email: data.email,
+          profile: data.profile,
           createdAt: new Date()
         });
 
@@ -56,12 +58,9 @@ export class Authen {
       })
   }
 
-  getData() {
-
-    const uid = sessionStorage.getItem("uid")
-    const docRef = doc(this.db, `users${uid}`)
-    return docData(docRef, { idField: 'id' })
-
+  allUsers():Observable<any> {
+    const itemcollection = collection(this.db, "users")
+    return collectionData(itemcollection, { idField: 'id' }) as Observable<any>
   }
  
 }
