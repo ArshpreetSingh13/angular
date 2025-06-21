@@ -35,7 +35,7 @@ export class UserProfile implements OnInit {
     this.db.userDetails(uid).subscribe((UserData)=>{
       this.userDetails=UserData
 
-      this.UserBio.patchValue({
+      this.UserBio.patchValue({  
         name: this.userDetails.name ,
         UserName: this.userDetails.UserName ,
         bio: this.userDetails.bio ,
