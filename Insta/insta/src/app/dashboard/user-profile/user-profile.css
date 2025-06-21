@@ -1,0 +1,21 @@
+body {
+    background-color: #202020;
+    font-family: Arial, sans-serif;
+  }
+  .edit-profile-container {
+    max-width: 550px;
+    margin: 50px ;
+    background: #070707;
+    border: 1px solid #dbdbdb;
+    border-radius: 10px;
+    padding: 40px;
+  }
+  .profile-pic {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .form-label {
+    font-weight: bold;
+  }

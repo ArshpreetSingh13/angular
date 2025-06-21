@@ -5,6 +5,7 @@ import { Post } from './dashboard/post/post';
 import { Register } from './dashboard/register/register';
 import { Login } from './dashboard/login/login';
 import { autherGuard } from './Auther/auther-guard';
+import { UserProfile } from './dashboard/user-profile/user-profile';
 
 
 export const routes: Routes = [
@@ -15,6 +16,7 @@ export const routes: Routes = [
         {
             path: "dashboard", canActivate: [autherGuard],component:Dashboard,children:[
             { path: "post", component: Post, canActivate: [autherGuard] },
+            { path: "userprofile", component: UserProfile, canActivate: [autherGuard] },
             
             // { path: "signup", component: Register }
             

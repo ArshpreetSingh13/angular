@@ -1,4 +1,3 @@
-
 <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-loader" [fullScreen]="true">
     <p style="color: white"> Uploading Your Post </p>
 </ngx-spinner>
@@ -6,13 +5,15 @@
 
 <div class="container mt-4 position-absolute top-0 " style="max-width: 400px; right: 50px;">
     <div class="d-flex align-items-center justify-content-between mb-3">
-        <div class="d-flex align-items-center">
-            <img src={{UserData.profile}} class="profile-pic me-2">
-            <div>
-                <div class="fw-bold text-white">{{UserData.UserName}}</div>
-                <div class="text-muted" style="font-size: 14px;">{{UserData.name}}</div>
+        <a class="text-decoration-none" routerLink="/dashboard/userprofile">
+            <div class="d-flex align-items-center">
+                <img src={{UserData.profile}} class="profile-pic me-2">
+                <div>
+                    <div class="fw-bold text-white">{{UserData.UserName}}</div>
+                    <div class="text-muted" style="font-size: 14px;">{{UserData.name}}</div>
+                </div>
             </div>
-        </div>
+        </a>
         <a href="#" class="text-primary text-decoration-none">Switch</a>
     </div>
 
@@ -33,20 +34,20 @@
         <a href="#" class="text-primary text-decoration-none">Follow</a>
     </div> -->
 
-   
+
     @for (SUser of AllUsers; track $index) {
-        <div class="suggestion-row d-flex align-items-center justify-content-between py-2">
-            <div class="d-flex align-items-center" *ngIf="SUser.id!=UserId" >
-                <img src={{SUser.profile}} class="profile-pic me-2">
-                <div>
-                    <div class="fw-bold text-white">{{SUser.UserName}}</div>
-                    <div class="text-muted" style="font-size: 13px;">Followed by s.u.k.h.007 + 4 more</div>
-                </div>
+    <div class="suggestion-row d-flex align-items-center justify-content-between py-2">
+        <div class="d-flex align-items-center" *ngIf="SUser.id!=UserId">
+            <img src={{SUser.profile}} class="profile-pic me-2">
+            <div>
+                <div class="fw-bold text-white">{{SUser.UserName}}</div>
+                <div class="text-muted" style="font-size: 13px;">Followed by s.u.k.h.007 + 4 more</div>
             </div>
-            <a href="#" class="text-primary text-decoration-none">Follow</a>
-            </div>
+        </div>
+        <a href="#" class="text-primary text-decoration-none">Follow</a>
+    </div>
     }
-  
+
 
     <!-- Footer -->
     <div class="footer-links text-center mt-4">

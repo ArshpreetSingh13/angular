@@ -1,0 +1,83 @@
+<div class="edit-profile-container">
+    <div class="d-flex align-items-center mb-4">
+        <img src="https://via.placeholder.com/90" class="profile-pic me-3" alt="Profile Picture">
+        <div>
+            <h5 class="mb-1">username</h5>
+            <button class="btn btn-outline-secondary btn-sm">Change Profile Photo</button>
+        </div>
+    </div>
+
+    <form [formGroup]="UserBio" (submit)="OnSubmit()">
+        <div class="mb-3 row">
+            <label for="name" class="col-sm-3 col-form-label text-end">Name</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="name" placeholder="Full Name" formControlName="name" required>
+            </div>
+            <div *ngIf="UserBio.get('name')?.invalid && UserBio.get('name')?.touched" class="text-danger">
+                Name is required.        </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="username" class="col-sm-3 col-form-label text-end">Username</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="username" placeholder="Username" formControlName="UserName" required>
+            </div>
+            <div *ngIf="UserBio.get('UserName')?.invalid && UserBio.get('UserName')?.touched" class="text-danger">
+                Username is required.        </div>
+        </div>
+<!-- 
+        <div class="mb-3 row">
+            <label for="website" class="col-sm-3 col-form-label text-end">Website</label>
+            <div class="col-sm-9">
+                <input type="url" class="form-control" id="website" placeholder="https://example.com">
+            </div>
+        </div> -->
+
+        <div class="mb-3 row">
+            <label for="bio" class="col-sm-3 col-form-label text-end">Bio</label>
+            <div class="col-sm-9">
+                <textarea class="form-control" id="bio" rows="3" placeholder="Write your bio..." formControlName="bio"></textarea>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="mb-3 row">
+            <label for="email" class="col-sm-3 col-form-label text-end">Email</label>
+            <div class="col-sm-9">
+                <input type="email" class="form-control" id="email" placeholder="example@email.com" formControlName="email" required="">
+            </div>
+            <div *ngIf="UserBio.get('email')?.invalid && UserBio.get('email')?.touched" class="text-danger">
+                Valid email is required.
+            </div>
+              
+        </div>
+
+        <div class="mb-3 row">
+            <label for="phone" class="col-sm-3 col-form-label text-end">Phone Number</label>
+            <div class="col-sm-9">
+                <input type="tel" class="form-control" id="phone" placeholder="+91 1234567890" formControlName="phone">
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="gender" class="col-sm-3 col-form-label text-end">Gender</label>
+            <div class="col-sm-9">
+                <select class="form-select" id="gender" formControlName="gender">
+                    <option selected disabled>Select</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                    <option>Prefer not to say</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="offset-sm-3 col-sm-9">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="reset" class="btn btn-outline-secondary ms-2">Cancel</button>
+            </div>
+        </div>
+    </form>
+    </div>

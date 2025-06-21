@@ -62,6 +62,10 @@ export class Authen {
     const itemcollection = collection(this.db, "users")
     return collectionData(itemcollection, { idField: 'id' }) as Observable<any>
   }
+
+  sigleUser(){
+    
+  }
  
 }
 

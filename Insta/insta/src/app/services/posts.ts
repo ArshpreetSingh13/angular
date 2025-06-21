@@ -21,9 +21,7 @@ export class Posts {
     const docRef = doc(this.db, `users/${uid}`)
     console.log("ref",docRef);
     
-    return docData(docRef, { idField: 'id' })
-
-    
+    return docData(docRef, { idField: 'id' })   
     
   }
 
@@ -46,5 +44,11 @@ export class Posts {
     const docRef = doc(this.db, `Posts/${uid}`)
 
     return updateDoc(docRef, { comments: data })
+  }
+
+  UpdateUser(uid:any,data:any){
+    const docRef=doc(this.db, `users/${uid}`)
+
+    return updateDoc(docRef,data)
   }
 }

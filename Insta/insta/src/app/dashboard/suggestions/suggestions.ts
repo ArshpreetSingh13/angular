@@ -3,10 +3,11 @@ import { Posts } from '../../services/posts';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { Authen } from '../../services/authen/authen';
 import { NgIf } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-suggestions',
-  imports: [NgxSpinnerModule,NgIf],
+  imports: [NgxSpinnerModule,NgIf,RouterLink],
   templateUrl: './suggestions.html',
   styleUrl: './suggestions.css'
 })
