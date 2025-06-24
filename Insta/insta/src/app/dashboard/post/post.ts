@@ -3,6 +3,7 @@ import { Stories } from '../stories/stories';
 import { Posts } from '../../services/posts';
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { user } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-post',
@@ -22,7 +23,8 @@ export class Post {
   isAnimating = false;
   comments: any[] = [];
   oldComments:any=""
-
+  UserLiked:any | null
+  likedByUser: any[] = [];
  
 
 CommentsForm=new FormGroup({
@@ -30,6 +32,8 @@ CommentsForm=new FormGroup({
   CommentBy:new FormControl(''),
   postId:new FormControl('')
 })
+
+
 
   likePost(id:any) {
     if (!this.liked) {
@@ -72,7 +76,34 @@ CommentsForm=new FormGroup({
 
 
 
-        this.db.likes(id, this.TotalLikes)
+        this.db.likes(id, this.TotalLikes).then(()=>{
+
+          this.db.userDetails(sessionStorage.getItem("uid")).subscribe((SingleUser)=>{
+            // console.log("hloo",SingleUser);
+            this.UserLiked=SingleUser
+
+               
+              console.log(this.UserLiked.liked + id)
+
+
+               
+           
+          //  if(this.UserLiked.liked){
+          //    this.likedByUser=id
+          //    this.UserLiked.liked=this.likedByUser
+          //  }
+          //  else{
+             
+          //    this.likedByUser = this.UserLiked.liked + id
+          //    this.UserLiked.liked = this.likedByUser
+
+          //  }
+
+
+            console.log("Liked",this.UserLiked)
+          
+          })
+        })
         this.cdr.detectChanges()
     
       }

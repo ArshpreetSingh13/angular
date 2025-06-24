@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { addDoc, collection, collectionData, doc, docData, Firestore, updateDoc } from '@angular/fire/firestore';
+import { addDoc, collection, collectionData, doc, docData, Firestore, setDoc, updateDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -51,4 +51,10 @@ export class Posts {
 
     return updateDoc(docRef,data)
   }
+
+  updateUserLiked(uid: string, data: any) {
+    const docRef = doc(this.db, `users/${uid}`);
+    return setDoc(docRef, data, { merge: true }); // merge keeps other data safe
+  }
+  
 }
